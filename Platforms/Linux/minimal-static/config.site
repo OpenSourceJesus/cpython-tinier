@@ -1,0 +1,32 @@
+# config.site for minimal static Linux builds
+#
+# Use with CONFIG_SITE=Platforms/Linux/minimal-static/config.site
+# (path relative to the source checkout root).
+
+# Avoid picking up host libraries via pkg-config for optional deps.
+PKG_CONFIG=/bin/false
+export PKG_CONFIG
+
+# Skip GNU readline (GPL) even if libreadline is installed.
+ac_cv_lib_readline=no
+ac_cv_readline_rl_pre_input_hook=no
+ac_cv_readline_rl_completion_display_matches_hook=no
+ac_cv_readline_rl_resize_terminal=no
+ac_cv_readline_rl_completion_matches=no
+ac_cv_readline_append_history=no
+
+# Skip GNU gdbm (GPL); prefer ndbm-only _dbm if anything.
+ac_cv_header_gdbm_h=no
+ac_cv_header_gdbm_slash_ndbm_h=no
+ac_cv_header_gdbm_dash_ndbm_h=no
+ac_cv_lib_gdbm_gdbm_open=no
+
+# Skip common third-party libraries (modules disabled in Setup.local too).
+ac_cv_working_openssl_ssl=no
+ac_cv_working_openssl_hashlib=no
+have_libffi=no
+have_zlib=no
+have_bzip2=no
+have_liblzma=no
+have_libzstd=no
+have_posix_shmem=no

@@ -1,0 +1,72 @@
+# Minimal static Linux build — disable rarely-used extension modules.
+# GPL-related: readline, _gdbm (configure also uses --without-readline).
+#
+# Note: _thread is a core bootstrap module and cannot be removed without
+# breaking the interpreter. Multiprocessing/asyncio accelerators are disabled.
+
+*disabled*
+
+# GPL / optional GNU deps
+readline
+_gdbm
+_dbm
+
+# Third-party libraries
+_ssl
+_hashlib
+_sqlite3
+_ctypes
+_curses
+_curses_panel
+_tkinter
+_decimal
+_uuid
+
+# XML (bundled expat is MIT, but rarely needed in embedded use)
+pyexpat
+_elementtree
+
+# CJK codecs and large unicode tables
+_codecs_cn
+_codecs_hk
+_codecs_iso2022
+_codecs_jp
+_codecs_kr
+_codecs_tw
+_multibytecodec
+unicodedata
+
+# Compression
+zlib
+_bz2
+_lzma
+_zstd
+
+# Debugging, profiling, remote inspection
+_remote_debugging
+_lsprof
+
+# Subinterpreters
+_interpreters
+_interpchannels
+_interpqueues
+
+# Multiprocessing / threading-related extensions
+_multiprocessing
+_posixshmem
+_asyncio
+
+# Less common stdlib C accelerators
+_zoneinfo
+cmath
+_statistics
+syslog
+grp
+
+# Locale module (UTF-8-only build; no C locale encoding fallback)
+_locale
+
+# Optional hash algorithms (keep sha2 + blake2 + hmac for hashlib)
+_md5
+_sha1
+_sha3
