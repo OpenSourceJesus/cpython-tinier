@@ -611,6 +611,11 @@ extern "C" {
 // - 'long double' has maximum alignment on *most* platforms,
 //   looks like the best we can do for pre-C11 compilers.
 // - The value is tested, see test_alignof_max_align_t
+// ShivyC does not support 80-bit long double; max alignment on x86_64 is 16,
+// but double's 8-byte alignment is the largest scalar this compiler uses.
+#if defined(__SHIVYC__) && !defined(ALIGNOF_MAX_ALIGN_T)
+#   define ALIGNOF_MAX_ALIGN_T 16
+#endif
 #if !defined(ALIGNOF_MAX_ALIGN_T) || ALIGNOF_MAX_ALIGN_T == 0
 #   undef ALIGNOF_MAX_ALIGN_T
 #   define ALIGNOF_MAX_ALIGN_T _Alignof(long double)
